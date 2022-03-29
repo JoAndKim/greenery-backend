@@ -12,7 +12,7 @@ public class PostThumbnailResponse {
     private Integer likes;
     private Integer hits;
 
-    public static PostThumbnailResponse toEntity(Post post) {
+    public static PostThumbnailResponse from(Post post) {
         return PostThumbnailResponse.builder()
                 .id(post.getId())
                 .userInfoForPostThumbnail(new UserInfoForPostThumbnail(post.getUser().getUsername(), post.getUser().getProfileImageUrl()))
