@@ -1,10 +1,15 @@
 package com.joandkim.greenery.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Getter
+@NoArgsConstructor
 public class Post {
 
     @Id
