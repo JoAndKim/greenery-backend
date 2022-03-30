@@ -16,12 +16,14 @@ public class Comment {
     private Long groupId;
 
     @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment"))
     private Post post;
 
     private Integer level;
 
     @ManyToOne
-    private User user;
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_author"))
+    private Member member;
 
     private String content;
 

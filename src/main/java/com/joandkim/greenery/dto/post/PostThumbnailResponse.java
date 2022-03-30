@@ -15,10 +15,10 @@ public class PostThumbnailResponse {
     public static PostThumbnailResponse toEntity(Post post) {
         return PostThumbnailResponse.builder()
                 .id(post.getId())
-                .userInfoForPostThumbnail(new UserInfoForPostThumbnail(post.getUser().getUsername(), post.getUser().getProfileImageUrl()))
+                .userInfoForPostThumbnail(new UserInfoForPostThumbnail(post.getMember().getUsername(), post.getMember().getProfileImageUrl()))
                 .title(post.getTitle())
                 .mainImageUrl(post.getPostContents().get(0).getPostImageUrl())
-                .likes(post.getLikes())
+                .likes(post.getLikeNumbers())
                 .hits(post.getHits())
                 .build();
     }

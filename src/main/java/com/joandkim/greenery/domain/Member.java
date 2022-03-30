@@ -3,28 +3,25 @@ package com.joandkim.greenery.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    private List<Like> likes;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<LikeNumber> likeNumbers;
 
-    @OneToMany
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Post> posts;
 
-    @OneToMany
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     private String username;

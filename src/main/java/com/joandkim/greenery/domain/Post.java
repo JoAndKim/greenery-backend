@@ -17,17 +17,18 @@ public class Post {
     private Long id;
 
     @ManyToOne
-    private User user;
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_post_author"))
+    private Member member;
 
     private String title;
 
-    @OneToMany
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<PostContent> postContents;
 
-    @OneToMany
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     private LocalDateTime regDate;
-    private Integer likes;
+    private Integer likeNumbers;
     private Integer hits;
 }
