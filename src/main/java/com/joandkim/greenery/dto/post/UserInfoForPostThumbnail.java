@@ -1,5 +1,8 @@
 package com.joandkim.greenery.dto.post;
 
+import lombok.Getter;
+
+@Getter
 public class UserInfoForPostThumbnail {
     private String username;
     private String profileImageUrl;

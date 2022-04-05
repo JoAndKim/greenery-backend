@@ -2,8 +2,10 @@ package com.joandkim.greenery.dto.post;
 
 import com.joandkim.greenery.domain.Post;
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class PostThumbnailResponse {
     private Long id;
     private UserInfoForPostThumbnail userInfoForPostThumbnail;
@@ -17,7 +19,7 @@ public class PostThumbnailResponse {
                 .id(post.getId())
                 .userInfoForPostThumbnail(new UserInfoForPostThumbnail(post.getMember().getUsername(), post.getMember().getProfileImageUrl()))
                 .title(post.getTitle())
-                .mainImageUrl(post.getPostContents().get(0).getPostImageUrl())
+                .mainImageUrl(null)
                 .likes(post.getLikeNumbers())
                 .hits(post.getHits())
                 .build();
