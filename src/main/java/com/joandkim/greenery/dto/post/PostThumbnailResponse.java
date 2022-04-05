@@ -1,5 +1,6 @@
 package com.joandkim.greenery.dto.post;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.joandkim.greenery.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.Getter;
 @Getter
 public class PostThumbnailResponse {
     private Long id;
+
+    @JsonProperty("user")
     private UserInfoForPostThumbnail userInfoForPostThumbnail;
     private String title;
     private String mainImageUrl;
