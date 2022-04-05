@@ -1,9 +1,12 @@
 package com.joandkim.greenery.domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor
 public class Comment {
 
     @Id
@@ -12,13 +15,15 @@ public class Comment {
 
     private Long groupId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment"))
     private Post post;
 
     private Integer level;
 
-    @ManyToOne
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_author"))
+    private Member member;
 
     private String content;
 
