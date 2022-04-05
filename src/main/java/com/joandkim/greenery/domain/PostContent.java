@@ -15,9 +15,11 @@ public class PostContent {
     private Long id;
 
     private String postImageUrl;
+
+    @Lob
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_post_content"))
     private Post post;
 }

@@ -15,13 +15,13 @@ public class Comment {
 
     private Long groupId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment"))
     private Post post;
 
     private Integer level;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_author"))
     private Member member;
 
