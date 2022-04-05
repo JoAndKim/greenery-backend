@@ -31,7 +31,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
-    runtimeOnly group: 'com.h2database', name: 'h2', version: '2.1.210'
+    // MySQL
+    runtimeOnly 'mysql:mysql-connector-java'
 }
 
 tasks.named('test') {
