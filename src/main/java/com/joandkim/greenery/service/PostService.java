@@ -16,7 +16,7 @@ public class PostService {
 
     public List<PostThumbnailResponse> getPosts() {
         return postRepository.findAll().stream()
-                .map(PostThumbnailResponse::toEntity)
+                .map(PostThumbnailResponse::from)
                 .collect(Collectors.toList());
     }
 }
