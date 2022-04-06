@@ -1,5 +1,6 @@
 package com.joandkim.greenery.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,4 +32,11 @@ public class Post {
     private LocalDateTime regDate;
     private Integer likeNumbers;
     private Integer hits;
+
+    @Builder
+    public Post(Member member, String title, List<PostContent> postContents) {
+        this.member = member;
+        this.title = title;
+        this.postContents = postContents;
+    }
 }

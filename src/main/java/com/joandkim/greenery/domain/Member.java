@@ -28,4 +28,8 @@ public class Member {
     private String password;
     private String email;
     private String profileImageUrl;
+
+    public Member(Long id) {
+        this.id = id;
+    }
 }
