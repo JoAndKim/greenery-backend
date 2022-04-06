@@ -75,4 +75,11 @@ alter table comment
     add constraint fk_comment
         foreign key (post_id) references post (id),
     add constraint fk_comment_author
-        foreign key (member_id) references member (id)
+        foreign key (member_id) references member (id);
+
+alter table comment convert to character set utf8;
+alter table post convert to character set utf8;
+alter table post_content convert to character set utf8;
+alter table member convert to character set utf8;
+
+
