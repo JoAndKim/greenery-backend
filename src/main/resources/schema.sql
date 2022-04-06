@@ -9,7 +9,7 @@ SET foreign_key_checks = 1;
 create table comment
 (
     id        bigint                              not null
-        primary key,
+        primary key auto_increment,
     content   varchar(255)                        null,
     group_id  bigint                              null,
     level     int                                 null,
@@ -29,7 +29,7 @@ create index fk_comment
 create table member
 (
     id                bigint       not null
-        primary key,
+        primary key auto_increment,
     email             varchar(255) null,
     password          varchar(255) null,
     profile_image_url varchar(255) null,
@@ -38,7 +38,8 @@ create table member
 
 create table post
 (
-    id           bigint                              not null primary key,
+    id           bigint                              not null
+        primary key auto_increment,
     hits         int                                 null,
     like_numbers int                                 null,
     reg_date     timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
@@ -51,7 +52,7 @@ create table post
 create table like_number
 (
     id        bigint not null
-        primary key,
+        primary key auto_increment,
     member_id bigint null,
     post_id   bigint null,
     constraint fk_like_member
@@ -63,8 +64,8 @@ create table like_number
 create table post_content
 (
     id             bigint       not null
-        primary key,
-    content        longtext null,
+        primary key auto_increment,
+    content        varchar(255) null,
     post_image_url varchar(255) null,
     post_id        bigint       null,
     constraint fk_post_content
@@ -77,9 +78,12 @@ alter table comment
     add constraint fk_comment_author
         foreign key (member_id) references member (id);
 
-alter table comment convert to character set utf8;
-alter table post convert to character set utf8;
-alter table post_content convert to character set utf8;
-alter table member convert to character set utf8;
-
-
+# charset 변경
+alter table greenery.post
+    convert to character set utf8mb4;
+alter table greenery.post_content
+    convert to character set utf8mb4;
+alter table greenery.comment
+    convert to character set utf8;
+alter table greenery.member
+    convert to character set utf8;
