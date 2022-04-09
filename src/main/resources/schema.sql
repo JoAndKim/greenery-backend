@@ -65,7 +65,7 @@ create table post_content
 (
     id             bigint       not null
         primary key auto_increment,
-    content        varchar(255) null,
+    content        longtext     null,
     post_image_url varchar(255) null,
     post_id        bigint       null,
     constraint fk_post_content
