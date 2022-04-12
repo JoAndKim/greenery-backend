@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joandkim.greenery.mapper.PostMapper">
+<!--    TODO: make ResultMap to get list of BriefMember-->
+
+    <select id="findAll" resultType="Post">
+        SELECT *
+        FROM post
+    </select>
+
+    <select id="getBriefPost" resultType="com.joandkim.greenery.dto.post.BriefPost">
+        #     TODO: decide main post_image_url
+        SELECT p.id,
+               p.title,
+               p.hits,
+               p.like_numbers    AS likes,
+               pc.post_image_url AS mainImageUrl
+        FROM post p
+                 JOIN post_content pc on p.id = pc.post_id
+    </select>
+</mapper>
