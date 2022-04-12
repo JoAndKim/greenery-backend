@@ -1,4 +1,4 @@
-package com.joandkim.greenery.domain;
+package com.joandkim.greenery.vo;
 
 import lombok.NoArgsConstructor;
 

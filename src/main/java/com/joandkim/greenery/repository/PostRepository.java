@@ -1,6 +1,6 @@
 package com.joandkim.greenery.repository;
 
-import com.joandkim.greenery.domain.Post;
+import com.joandkim.greenery.vo.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

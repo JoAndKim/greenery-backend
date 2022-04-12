@@ -1,7 +1,7 @@
 package com.joandkim.greenery.dto.post;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.joandkim.greenery.domain.Post;
+import com.joandkim.greenery.vo.Post;
 import lombok.Builder;
 import lombok.Getter;
 
