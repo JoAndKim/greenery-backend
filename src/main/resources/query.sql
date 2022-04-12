@@ -14,7 +14,7 @@ create table `greenery`.comment
     reg_date  timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
     member_id bigint                              null,
     post_id   bigint                              null
-);
+) character set = utf8mb4;
 
 
 
@@ -26,7 +26,7 @@ create table `greenery`.post
     reg_date     timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
     title        varchar(255)                        null,
     member_id    bigint                              null
-);
+) character set = utf8mb4;;
 
 create table `greenery`.like_number
 (
@@ -34,7 +34,7 @@ create table `greenery`.like_number
         primary key,
     member_id bigint null,
     post_id   bigint null
-);
+) character set = utf8mb4;;
 
 create table `greenery`.post_content
 (
@@ -43,7 +43,7 @@ create table `greenery`.post_content
     content        longtext     null,
     post_image_url varchar(255) null,
     post_id        bigint       null
-);
+) character set = utf8mb4;;
 
 create table `greenery`.member
 (
@@ -53,4 +53,4 @@ create table `greenery`.member
     password          varchar(255) null,
     profile_image_url varchar(255) null,
     username          varchar(255) null
-);
+) character set = utf8mb4;;
