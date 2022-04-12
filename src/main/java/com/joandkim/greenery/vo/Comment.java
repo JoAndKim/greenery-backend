@@ -1,31 +1,16 @@
 package com.joandkim.greenery.vo;
 
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@NoArgsConstructor
+@Getter
 public class Comment {
-
-    @Id
-    @GeneratedValue
     private Long id;
-
     private Long groupId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment"))
     private Post post;
-
     private Integer level;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_author"))
     private Member member;
-
     private String content;
-
     private LocalDateTime regDate;
 }
