@@ -26,7 +26,10 @@ create table `greenery`.post
     reg_date     timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
     title        varchar(255)                        null,
     member_id    bigint                              null
-) character set = utf8mb4;;
+) character set = utf8mb4;
+
+insert into `greenery`.post (id, hits, like_numbers, title, member_id)
+values (1, 5, 7, 'hell world', 1);
 
 create table `greenery`.like_number
 (
@@ -34,7 +37,7 @@ create table `greenery`.like_number
         primary key,
     member_id bigint null,
     post_id   bigint null
-) character set = utf8mb4;;
+) character set = utf8mb4;
 
 create table `greenery`.post_content
 (
@@ -43,7 +46,10 @@ create table `greenery`.post_content
     content        longtext     null,
     post_image_url varchar(255) null,
     post_id        bigint       null
-) character set = utf8mb4;;
+) character set = utf8mb4;
+
+insert into `greenery`.post_content (id, content, post_image_url, post_id)
+values (1, '안녕하세요 헬로로', 'https://contents.lotteon.com/itemimage/_v000249/LO/15/32/55/97/16/_1/53/25/59/71/7/LO1532559716_1532559717_1.jpg/dims/optimize/dims/resizemc/400x400', 1);
 
 create table `greenery`.member
 (
@@ -53,4 +59,7 @@ create table `greenery`.member
     password          varchar(255) null,
     profile_image_url varchar(255) null,
     username          varchar(255) null
-) character set = utf8mb4;;
+) character set = utf8mb4;
+
+insert into `greenery`.member (id, email, password, profile_image_url, username)
+values (1, 'iamscvv@gmail.com', '$2a$10$pUOkbjxQXSfHWO.ZFfQcXevGIyFxm01iiWZN1rjXMLzhFsUj7YZmW', 'https://avatars.githubusercontent.com/u/59721293?v=4', 'kyupid');
