@@ -7,5 +7,5 @@ public class PostContent {
     private Long id;
     private String postImageUrl;
     private String content;
-    private Post post;
+    private Long post_id;
 }
