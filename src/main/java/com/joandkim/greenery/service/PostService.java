@@ -2,6 +2,7 @@ package com.joandkim.greenery.service;
 
 import com.joandkim.greenery.dto.post.BriefPost;
 import com.joandkim.greenery.dto.post.Posts;
+import com.joandkim.greenery.dto.post.detail.PostDetail;
 import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +28,9 @@ public class PostService {
     public MainPosts getMainPosts() {
         List<BriefPost> briefPost = postMapper.getBriefPost(true);
         return new MainPosts(briefPost);
+    }
+
+    public PostDetail getPostDetail(Long postId) {
+        return postMapper.getPostDetail(postId);
     }
 }

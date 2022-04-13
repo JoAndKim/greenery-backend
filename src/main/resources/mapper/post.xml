@@ -3,8 +3,13 @@
 <mapper namespace="com.joandkim.greenery.mapper.PostMapper">
     <resultMap id="BriefPostResultMap" type="com.joandkim.greenery.dto.post.BriefPost">
         <id property="id" column="id"/>
-        <collection property="briefMember" column="id"
-                    select="selectBriefMemberByPostId"/>
+        <collection property="briefMember" column="id" select="selectBriefMemberByPostId"/>
+    </resultMap>
+
+    <resultMap id="PostDetailResultMap" type="com.joandkim.greenery.dto.post.detail.PostDetail">
+        <id property="id" column="id"/>
+        <collection property="briefMember" column="id" select="selectBriefMemberByPostId"/>
+        <collection property="postContents" column="id" select="selectPostContentListByPostId"/>
     </resultMap>
 
     <select id="findAll" resultType="Post">
@@ -33,5 +38,21 @@
         FROM `greenery`.member m
                  JOIN post p ON m.id = p.member_id
         WHERE p.id = #{id}
+    </select>
+
+    <select id="getPostDetail" resultType="com.joandkim.greenery.dto.post.detail.PostDetail" resultMap="PostDetailResultMap">
+        SELECT p.id,
+               p.title,
+               p.hits,
+               p.like_numbers AS likes,
+               p.reg_date
+        FROM post p
+        WHERE p.id = #{postId}
+    </select>
+
+    <select id="selectPostContentListByPostId" resultType="com.joandkim.greenery.vo.PostContent">
+        SELECT id, post_image_url, content
+        FROM post_content
+        WHERE post_id = #{id}
     </select>
 </mapper>
