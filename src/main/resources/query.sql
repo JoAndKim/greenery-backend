@@ -1,8 +1,10 @@
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS `greenery`.comment;
 DROP TABLE IF EXISTS `greenery`.member;
 DROP TABLE IF EXISTS `greenery`.post;
 DROP TABLE IF EXISTS `greenery`.like_number;
 DROP TABLE IF EXISTS `greenery`.post_content;
+SET foreign_key_checks = 1;
 
 create table `greenery`.comment
 (
