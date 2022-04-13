@@ -2,6 +2,7 @@ package com.joandkim.greenery.service;
 
 import com.joandkim.greenery.dto.post.BriefPost;
 import com.joandkim.greenery.dto.post.Posts;
+import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -20,6 +21,11 @@ public class PostService {
     public Posts getPosts() {
         List<BriefPost> post = postMapper.getBriefPost();
         logger.info("post: {}", post);
-        return null;
+        return new Posts(post);
+    }
+
+    public MainPosts getMainPosts() {
+        List<BriefPost> briefPost = postMapper.getBriefPost(true);
+        return new MainPosts(briefPost);
     }
 }
