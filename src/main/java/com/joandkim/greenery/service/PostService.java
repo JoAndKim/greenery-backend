@@ -20,7 +20,6 @@ public class PostService {
     public Posts getPosts() {
         List<BriefPost> post = postMapper.getBriefPost();
         logger.info("post: {}", post);
-        // TODO: get full post incuding BriefMember and return Posts
         return null;
     }
 }
