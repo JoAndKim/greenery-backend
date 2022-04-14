@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.joandkim.greenery.mapper.MemberMapper">
+    <insert id="save" parameterType="com.joandkim.greenery.vo.Member" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO greenery.member (greenery.member.email, greenery.member.password, greenery.member.profile_image_url,
+                                     greenery.member.username)
+        VALUES (#{email}, #{password}, #{profileImageUrl}, #{username});
+    </insert>
 </mapper>
