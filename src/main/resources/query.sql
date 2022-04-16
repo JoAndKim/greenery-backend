@@ -60,7 +60,8 @@ create table `greenery`.member
     email             varchar(255) null,
     password          varchar(255) null,
     profile_image_url varchar(255) null,
-    username          varchar(255) null
+    username          varchar(255) null,
+    role              varchar(40) not null
 ) character set = utf8mb4;
 
 insert into `greenery`.member (id, email, password, profile_image_url, username)
