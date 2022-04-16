@@ -1,7 +1,7 @@
 package com.joandkim.greenery.config.jwt;
 
 
-import com.joandkim.greenery.service.MemberService;
+import com.joandkim.greenery.service.member.MemberService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -33,8 +33,8 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String userPk) {
-        Claims claims = Jwts.claims().setSubject(userPk);
+    public String createToken(String memberPk) {
+        Claims claims = Jwts.claims().setSubject(memberPk);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims)

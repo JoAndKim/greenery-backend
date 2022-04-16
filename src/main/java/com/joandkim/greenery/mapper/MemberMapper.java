@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface MemberMapper {
     void save(Member signupMember);
 
-    Optional<Member> findById(Long id);
+    Optional<Member> findByUsername(String username);
 }

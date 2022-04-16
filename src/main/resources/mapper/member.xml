@@ -7,9 +7,9 @@
         VALUES (#{email}, #{password}, #{profileImageUrl}, #{username});
     </insert>
 
-    <select id="findById" resultType="Member">
+    <select id="findByUsername" resultType="Member">
         SELECT *
         FROM greenery.member
-        WHERE id = #{id}
+        WHERE username = #{username}
     </select>
 </mapper>
