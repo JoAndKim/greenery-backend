@@ -1,9 +1,11 @@
 package com.joandkim.greenery.mapper;
 
 import com.joandkim.greenery.dto.post.BriefPost;
+import com.joandkim.greenery.dto.post.NewPost;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
 import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.vo.Post;
+import com.joandkim.greenery.vo.PostContent;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +21,9 @@ public interface PostMapper{
     List<BriefPost> getBriefPost(Boolean forMain);
 
     PostDetail getPostDetail(Long postId);
+
+    void save(NewPost newPost);
+
+    void savePostContents(@Param("postContents") List<PostContent> postContents,
+                          @Param("postId") Long postId);
 }

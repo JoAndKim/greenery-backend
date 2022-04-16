@@ -1,6 +1,7 @@
 package com.joandkim.greenery.service;
 
 import com.joandkim.greenery.dto.post.BriefPost;
+import com.joandkim.greenery.dto.post.NewPost;
 import com.joandkim.greenery.dto.post.Posts;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
 import com.joandkim.greenery.dto.post.main.MainPosts;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,5 +34,12 @@ public class PostService {
 
     public PostDetail getPostDetail(Long postId) {
         return postMapper.getPostDetail(postId);
+    }
+
+    // TODO: need to bring memberId
+    @Transactional
+    public void create(NewPost newPost) {
+        postMapper.save(newPost);
+        postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
     }
 }

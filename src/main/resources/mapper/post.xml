@@ -55,4 +55,20 @@
         FROM post_content
         WHERE post_id = #{id}
     </select>
+
+    <insert id="save" parameterType="com.joandkim.greenery.dto.post.NewPost">
+        INSERT INTO greenery.post (title, member_id)
+        VALUES (#{title}, #{memberId})
+        <selectKey keyProperty="id" resultType="Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="savePostContents">
+        INSERT INTO greenery.post_content (content, post_image_url, post_id)
+        VALUES
+        <foreach collection="postContents" item="postContents" separator=",">
+            (#{postContents.content}, #{postContents.postImageUrl}, #{postId})
+        </foreach>
+    </insert>
 </mapper>
