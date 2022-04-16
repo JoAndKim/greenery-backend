@@ -1,10 +1,8 @@
 package com.joandkim.greenery.controller.member;
 
-import com.joandkim.greenery.service.member.MemberService;
-import com.joandkim.greenery.service.member.SignupService;
-import com.joandkim.greenery.vo.Member;
+import com.joandkim.greenery.dto.member.LoginMember;
+import com.joandkim.greenery.service.member.LoginService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,15 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/signup")
 @RequiredArgsConstructor
-public class SignupController {
+@RequestMapping("/api/login")
+public class LoginController {
 
-    private final SignupService signupService;
+    private final LoginService loginService;
 
-    @PostMapping
-    public ResponseEntity<String> signup(@RequestBody Member signupMember) {
-        String token = signupService.signup(signupMember);
+    // 로그인
+    @PostMapping("/direct")
+    public ResponseEntity<String> login(@RequestBody LoginMember member) {
+        String token = loginService.login(member);
         return ResponseEntity.ok(token);
     }
 }
