@@ -56,7 +56,7 @@ public class JwtTokenProvider {
 
     // get token from http header
     public String resolveToken(HttpServletRequest request) {
-        return request.getHeader("X-AUTH-TOKEN");
+        return request.getHeader("Authorization");
     }
 
     // validate expiry date from token
