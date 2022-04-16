@@ -15,6 +15,7 @@ public class SignupService {
     public void signup(Member signupMember) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         signupMember.setPassword(encoder.encode(signupMember.getPassword()));
+        signupMember.setRole("ROLE_USER");
         memberMapper.save(signupMember);
     }
 }
