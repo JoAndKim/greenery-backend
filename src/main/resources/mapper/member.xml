@@ -6,4 +6,10 @@
                                      greenery.member.username)
         VALUES (#{email}, #{password}, #{profileImageUrl}, #{username});
     </insert>
+
+    <select id="findById" resultType="Member">
+        SELECT *
+        FROM greenery.member
+        WHERE id = #{id}
+    </select>
 </mapper>
