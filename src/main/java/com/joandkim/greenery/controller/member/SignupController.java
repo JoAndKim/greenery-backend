@@ -1,6 +1,7 @@
 package com.joandkim.greenery.controller.member;
 
 import com.joandkim.greenery.service.member.MemberService;
+import com.joandkim.greenery.service.member.SignupService;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SignupController {
 
-    private final MemberService memberService;
+    private final SignupService signupService;
 
     @PostMapping
-    public ResponseEntity<Void> signup(@RequestBody Member signupMember) {
-        memberService.signup(signupMember);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<String> signup(@RequestBody Member signupMember) {
+        String token = signupService.signup(signupMember);
+        return ResponseEntity.ok(token);
     }
 }

@@ -22,10 +22,5 @@ public class MemberService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다.: " + username));
     }
 
-    public void signup(Member signupMember) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        signupMember.setPassword(encoder.encode(signupMember.getPassword()));
-        signupMember.setRole("ROLE_USER");
-        memberMapper.save(signupMember);
-    }
+
 }
