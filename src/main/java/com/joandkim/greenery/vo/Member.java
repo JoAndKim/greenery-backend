@@ -32,7 +32,7 @@ public class Member implements UserDetails {
 
     @Override
     public String getUsername() {
-        return String.valueOf(this.id);
+        return String.valueOf(this.username);
     }
 
     @Override
