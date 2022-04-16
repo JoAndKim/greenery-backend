@@ -3,6 +3,7 @@ package com.joandkim.greenery.controller.member;
 import com.joandkim.greenery.dto.member.LoginMember;
 import com.joandkim.greenery.service.member.LoginService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ public class LoginController {
 
     // 로그인
     @PostMapping("/direct")
-    public String login(@RequestBody LoginMember member) {
+    public ResponseEntity<String> login(@RequestBody LoginMember member) {
         String token = loginService.login(member);
-        return token;
+        return ResponseEntity.ok(token);
     }
 }
