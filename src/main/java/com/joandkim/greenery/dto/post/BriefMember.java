@@ -6,7 +6,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class BriefMember {
-    private Long memberId;
-    private String username;
+    private Long userId;
+    private String nickname;
     private String profileImageUrl;
 }
