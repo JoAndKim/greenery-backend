@@ -42,6 +42,9 @@ dependencies {
     // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+
+    // spring-cloud for AWS S3
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '3.1.1'
 }
 
 tasks.named('test') {
