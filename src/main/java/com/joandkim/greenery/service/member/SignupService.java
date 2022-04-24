@@ -1,6 +1,7 @@
 package com.joandkim.greenery.service.member;
 
 import com.joandkim.greenery.config.jwt.JwtTokenProvider;
+import com.joandkim.greenery.dto.signup.CheckedDuplicatedName;
 import com.joandkim.greenery.mapper.MemberMapper;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,15 @@ public class SignupService {
         signupMember.setRole("ROLE_USER");
         memberMapper.save(signupMember);
         return jwtTokenProvider.createToken(signupMember.getUsername());
+    }
+
+    public CheckedDuplicatedName checkDuplicatedName(String username, String nickname) {
+        if (username != null) {
+            return memberMapper.hasDuplicatedUsername(username);
+        }
+        if (nickname != null) {
+            return memberMapper.hasDuplicatedNickname(nickname);
+        }
+        return null; // TODO exception 처리 필요
     }
 }
