@@ -31,8 +31,8 @@
     </select>
 
     <select id="selectBriefMemberByPostId" resultType="com.joandkim.greenery.dto.post.BriefMember">
-        SELECT m.id AS memberId,
-               m.username,
+        SELECT m.id AS userId,
+               m.nickname,
                m.profile_image_url
         FROM `greenery`.member m
                  JOIN post p ON m.id = p.member_id
