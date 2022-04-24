@@ -57,12 +57,12 @@ create table `greenery`.member
 (
     id                bigint       not null
         primary key,
-    email             varchar(255) null,
+    nickname             varchar(255) null,
     password          varchar(255) null,
     profile_image_url varchar(255) null,
     username          varchar(255) null,
     role              varchar(40) not null
 ) character set = utf8mb4;
 
-insert into `greenery`.member (id, email, password, profile_image_url, username)
+insert into `greenery`.member (id, nickname, password, profile_image_url, username)
 values (1, 'iamscvv@gmail.com', '$2a$10$pUOkbjxQXSfHWO.ZFfQcXevGIyFxm01iiWZN1rjXMLzhFsUj7YZmW', 'https://avatars.githubusercontent.com/u/59721293?v=4', 'kyupid');
