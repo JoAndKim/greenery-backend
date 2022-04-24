@@ -1,14 +1,12 @@
 package com.joandkim.greenery.controller.member;
 
+import com.joandkim.greenery.dto.signup.CheckedDuplicatedName;
 import com.joandkim.greenery.service.member.SignupService;
 import com.joandkim.greenery.vo.Member;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/signup")
@@ -22,5 +20,12 @@ public class SignupController {
     public ResponseEntity<String> signup(@RequestBody Member signupMember) {
         String token = signupService.signup(signupMember);
         return ResponseEntity.ok(token);
+    }
+
+    @GetMapping("validate")
+    public ResponseEntity checkDuplicated(@RequestParam(required = false) String username,
+                                          @RequestParam(required = false) String nickname) {
+        CheckedDuplicatedName checkedDuplicatedName = signupService.checkDuplicatedName(username, nickname);
+        return ResponseEntity.ok(checkedDuplicatedName);
     }
 }
