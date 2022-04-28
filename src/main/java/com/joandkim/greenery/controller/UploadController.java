@@ -23,7 +23,7 @@ public class UploadController {
     @PostMapping("/api/image")
     public ResponseEntity<Image> image(@RequestParam("imageFile") MultipartFile multipartFile) throws IOException {
         logger.info("multipartFile: {}", multipartFile);
-        s3Uploader.upload(multipartFile, "static");
-        return ResponseEntity.ok(new Image());
+        String imageUrl = s3Uploader.upload(multipartFile, "static");
+        return ResponseEntity.ok(new Image(imageUrl));
     }
 }
