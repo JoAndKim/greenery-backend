@@ -216,3 +216,9 @@ gradle-app.setting
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,gradle,java,intellij
+
+# shell script file
+scp.sh
+
+# application-s3.properties
+src/main/resources/application-s3.properties
