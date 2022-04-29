@@ -17,7 +17,7 @@ public class Member implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private String email;
+    private String nickname;
     private String profileImageUrl;
     private String role;
 

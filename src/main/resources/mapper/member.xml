@@ -7,7 +7,7 @@
                                      greenery.member.profile_image_url,
                                      greenery.member.username,
                                      greenery.member.role)
-        VALUES (#{email}, #{password}, #{profileImageUrl}, #{username}, #{role});
+        VALUES (#{nickname}, #{password}, #{profileImageUrl}, #{username}, #{role});
     </insert>
 
     <select id="findByUsername" resultType="Member">
