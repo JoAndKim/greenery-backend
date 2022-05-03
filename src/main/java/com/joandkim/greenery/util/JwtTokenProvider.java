@@ -1,4 +1,4 @@
-package com.joandkim.greenery.config.jwt;
+package com.joandkim.greenery.util;
 
 
 import com.joandkim.greenery.service.member.MemberService;
