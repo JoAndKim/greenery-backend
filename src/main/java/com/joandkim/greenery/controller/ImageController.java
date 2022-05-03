@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-public class UploadController {
+public class ImageController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final S3Uploader s3Uploader;
