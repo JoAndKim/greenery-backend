@@ -1,7 +1,7 @@
 package com.joandkim.greenery.config;
 
 import com.joandkim.greenery.config.jwt.JwtAuthenticationFilter;
-import com.joandkim.greenery.config.jwt.JwtTokenProvider;
+import com.joandkim.greenery.util.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

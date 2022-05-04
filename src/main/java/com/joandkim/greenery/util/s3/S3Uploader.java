@@ -1,5 +1,6 @@
 package com.joandkim.greenery.util.s3;
 
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -42,6 +43,15 @@ public class S3Uploader {
     private String putS3(File uploadFile, String fileName) {
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
+    }
+
+    private void delete(String filename) {
+        // filename = basePath (static) + "/ filename"
+        try {
+            amazonS3Client.deleteObject(bucket, filename);
+        } catch (AmazonServiceException e) {
+            log.info("fail to delete image: {}", e.getErrorMessage());
+        }
     }
 
     private void removeNewFile(File targetFile) {

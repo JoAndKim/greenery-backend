@@ -1,5 +1,6 @@
 package com.joandkim.greenery.config.jwt;
 
+import com.joandkim.greenery.util.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

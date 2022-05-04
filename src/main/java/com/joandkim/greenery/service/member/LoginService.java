@@ -1,6 +1,6 @@
 package com.joandkim.greenery.service.member;
 
-import com.joandkim.greenery.config.jwt.JwtTokenProvider;
+import com.joandkim.greenery.util.JwtTokenProvider;
 import com.joandkim.greenery.dto.member.LoginMember;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
