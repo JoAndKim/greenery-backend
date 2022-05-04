@@ -2,6 +2,7 @@ package com.joandkim.greenery.service.member;
 
 import com.joandkim.greenery.config.jwt.JwtTokenProvider;
 import com.joandkim.greenery.dto.login.LoginMemberRequest;
+import com.joandkim.greenery.dto.login.LoginMemberResponse;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +15,7 @@ public class LoginService {
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberService memberService;
 
-    public String login(LoginMemberRequest loginMemberRequest) {
+    public LoginMemberResponse login(LoginMemberRequest loginMemberRequest) {
         Member member = memberService.loadUserByUsername(loginMemberRequest.getUsername());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -22,7 +23,11 @@ public class LoginService {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
 
-        return jwtTokenProvider.createToken(member.getUsername());
+        return LoginMemberResponse.builder()
+                .accessToken(jwtTokenProvider.createToken(member.getUsername()))
+                .nickname(member.getNickname())
+                .profileImageUrl(member.getProfileImageUrl())
+                .build();
     }
 }
 
