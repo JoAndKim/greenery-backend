@@ -1,13 +1,10 @@
 package com.joandkim.greenery.service.member;
 
-import com.joandkim.greenery.config.jwt.JwtTokenProvider;
-import com.joandkim.greenery.dto.member.LoginMember;
 import com.joandkim.greenery.mapper.MemberMapper;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
