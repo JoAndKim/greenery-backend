@@ -3,7 +3,6 @@ package com.joandkim.greenery.service.member;
 import com.joandkim.greenery.dto.login.LoginMemberRequest;
 import com.joandkim.greenery.dto.login.LoginMemberResponse;
 import com.joandkim.greenery.util.JwtTokenProvider;
-import com.joandkim.greenery.dto.member.LoginMember;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
