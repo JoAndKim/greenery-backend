@@ -1,5 +1,7 @@
 package com.joandkim.greenery.service.member;
 
+import com.joandkim.greenery.dto.login.LoginMemberRequest;
+import com.joandkim.greenery.dto.login.LoginMemberResponse;
 import com.joandkim.greenery.util.JwtTokenProvider;
 import com.joandkim.greenery.dto.member.LoginMember;
 import com.joandkim.greenery.vo.Member;
@@ -14,15 +16,19 @@ public class LoginService {
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberService memberService;
 
-    public String login(LoginMember loginMember) {
-        Member member = memberService.loadUserByUsername(loginMember.getUsername());
+    public LoginMemberResponse login(LoginMemberRequest loginMemberRequest) {
+        Member member = memberService.loadUserByUsername(loginMemberRequest.getUsername());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if (!encoder.matches(loginMember.getPassword(), member.getPassword())) {
+        if (!encoder.matches(loginMemberRequest.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
 
-        return jwtTokenProvider.createToken(member.getUsername());
+        return LoginMemberResponse.builder()
+                .accessToken(jwtTokenProvider.createToken(member.getUsername()))
+                .nickname(member.getNickname())
+                .profileImageUrl(member.getProfileImageUrl())
+                .build();
     }
 }
 

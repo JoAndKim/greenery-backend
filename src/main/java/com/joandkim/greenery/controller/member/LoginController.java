@@ -1,6 +1,7 @@
 package com.joandkim.greenery.controller.member;
 
-import com.joandkim.greenery.dto.member.LoginMember;
+import com.joandkim.greenery.dto.login.LoginMemberRequest;
+import com.joandkim.greenery.dto.login.LoginMemberResponse;
 import com.joandkim.greenery.service.member.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class LoginController {
 
     @Operation(summary = "로그인", description = "성공적으로 로그인하면 JWT를 발급받는다")
     @PostMapping("/direct")
-    public ResponseEntity<String> login(@RequestBody LoginMember member) {
-        String token = loginService.login(member);
-        return ResponseEntity.ok(token);
+    public ResponseEntity<LoginMemberResponse> login(@RequestBody LoginMemberRequest member) {
+        LoginMemberResponse memberResponse = loginService.login(member);
+        return ResponseEntity.ok(memberResponse);
     }
 }
