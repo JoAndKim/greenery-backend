@@ -1,4 +1,4 @@
-package com.joandkim.greenery.config.jwt;
+package com.joandkim.greenery.util;
 
 
 import com.joandkim.greenery.service.member.MemberService;
@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,8 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    private String secretKey = "greenery2.0";
+    @Value("${jwt.secretKey}")
+    private String secretKey;
 
     private final long TOKEN_VALID_TIME = 30 * 60 * 1000L; // 30 min
 
