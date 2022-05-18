@@ -19,11 +19,17 @@ public class SignupService {
     public SignupResponse signup(Member signupMember) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         signupMember.setPassword(encoder.encode(signupMember.getPassword()));
+
         signupMember.setRole("ROLE_USER");
+
+        String refreshToken = jwtTokenProvider.createRefreshToken(signupMember.getUsername());
+        signupMember.setRefreshToken(refreshToken);
+
         memberMapper.save(signupMember);
 
         return SignupResponse.builder()
                 .accessToken(jwtTokenProvider.createToken(signupMember.getUsername()))
+                .refreshToken(refreshToken)
                 .nickname(signupMember.getNickname())
                 .profileImageUrl(signupMember.getProfileImageUrl())
                 .build();

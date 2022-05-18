@@ -20,6 +20,7 @@ public class Member implements UserDetails {
     private String nickname;
     private String profileImageUrl;
     private String role;
+    private String refreshToken;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

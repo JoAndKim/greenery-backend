@@ -26,6 +26,7 @@ public class JwtTokenProvider {
     private String secretKey;
 
     private final long TOKEN_VALID_TIME = 30 * 60 * 1000L; // 30 min
+    private final long REFRESH_TOKEN_VALID_TIME = 30 * 48 * 30 * 60 * 1000L; // 30 days
 
     private final MemberService memberService;
 
@@ -42,6 +43,17 @@ public class JwtTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(now) // token issue time
                 .setExpiration(new Date(now.getTime() + TOKEN_VALID_TIME)) // set expiry time
+                .signWith(SignatureAlgorithm.HS256, secretKey)  // algorithm for encrypting and secretKey for signature
+                .compact();
+    }
+
+    public String createRefreshToken(String memberPk) {
+        Claims claims = Jwts.claims().setSubject(memberPk);
+        Date now = new Date();
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now) // token issue time
+                .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_VALID_TIME)) // set expiry time
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // algorithm for encrypting and secretKey for signature
                 .compact();
     }
