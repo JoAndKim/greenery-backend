@@ -61,7 +61,8 @@ create table `greenery`.member
     password          varchar(255) null,
     profile_image_url varchar(255) null,
     username          varchar(255) null,
-    role              varchar(40) not null
+    role              varchar(40) not null,
+    refresh_token     varchar(255) not null
 ) character set = utf8mb4;
 
 insert into `greenery`.member (id, nickname, password, profile_image_url, username)
