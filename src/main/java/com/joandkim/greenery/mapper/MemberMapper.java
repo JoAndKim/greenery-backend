@@ -15,4 +15,6 @@ public interface MemberMapper {
     CheckedDuplicatedName hasDuplicatedUsername(String username);
 
     CheckedDuplicatedName hasDuplicatedNickname(String username);
+
+    String findRefreshTokenByUsername(String username);
 }

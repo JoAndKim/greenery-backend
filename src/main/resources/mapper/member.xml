@@ -27,4 +27,10 @@
         FROM greenery.member
         WHERE username = #{nickname}
     </select>
+
+    <select id="findRefreshTokenByUsername" resultType="String">
+        SELECT refresh_token
+        FROM greenery.member
+        WHERE username = #{username}
+    </select>
 </mapper>
