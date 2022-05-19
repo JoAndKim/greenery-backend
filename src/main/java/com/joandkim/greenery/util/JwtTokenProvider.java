@@ -26,6 +26,7 @@ public class JwtTokenProvider {
     private String secretKey;
 
     private final long TOKEN_VALID_TIME = 30 * 60 * 1000L; // 30 min
+//    private final long TOKEN_VALID_TIME = 5L; // 30 min
     private final long REFRESH_TOKEN_VALID_TIME = 30 * 48 * 30 * 60 * 1000L; // 30 days
 
     private final MemberService memberService;
@@ -81,5 +82,9 @@ public class JwtTokenProvider {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public String resolveRefreshToken(HttpServletRequest request) {
+        return request.getHeader("Authorization-Refresh");
     }
 }
