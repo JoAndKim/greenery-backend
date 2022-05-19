@@ -34,4 +34,10 @@
         FROM greenery.member
         WHERE username = #{username}
     </select>
+
+    <update id="updateRefreshToken">
+        UPDATE greenery.member
+        SET refresh_token = #{refreshToken}
+        WHERE username = #{username}
+    </update>
 </mapper>

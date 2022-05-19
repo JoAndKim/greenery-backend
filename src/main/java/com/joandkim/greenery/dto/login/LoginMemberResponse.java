@@ -7,6 +7,7 @@ import lombok.Getter;
 @Builder
 public class LoginMemberResponse {
     private String accessToken;
+    private String refreshToken;
     private String nickname;
     private String profileImageUrl;
 }

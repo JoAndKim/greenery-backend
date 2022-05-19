@@ -20,4 +20,7 @@ public class MemberService implements UserDetailsService {
     }
 
 
+    public void updateRefreshToken(String username, String refreshToken) {
+        memberMapper.updateRefreshToken(username, refreshToken);
+    }
 }

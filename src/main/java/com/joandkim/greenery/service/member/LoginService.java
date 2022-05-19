@@ -23,8 +23,12 @@ public class LoginService {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
 
+        String refreshToken = jwtTokenProvider.createRefreshToken(loginMemberRequest.getUsername());
+        memberService.updateRefreshToken(loginMemberRequest.getUsername(), refreshToken);
+
         return LoginMemberResponse.builder()
                 .accessToken(jwtTokenProvider.createToken(member.getUsername()))
+                .refreshToken(refreshToken)
                 .nickname(member.getNickname())
                 .profileImageUrl(member.getProfileImageUrl())
                 .build();
