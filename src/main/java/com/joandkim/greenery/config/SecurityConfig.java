@@ -1,6 +1,7 @@
 package com.joandkim.greenery.config;
 
 import com.joandkim.greenery.config.jwt.JwtAuthenticationFilter;
+import com.joandkim.greenery.service.TokenService;
 import com.joandkim.greenery.util.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final TokenService tokenService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -32,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SWAGGER_URL_ARRAY).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, tokenService),
                         UsernamePasswordAuthenticationFilter.class);
 
     }

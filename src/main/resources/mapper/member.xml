@@ -6,8 +6,9 @@
                                      greenery.member.password,
                                      greenery.member.profile_image_url,
                                      greenery.member.username,
-                                     greenery.member.role)
-        VALUES (#{nickname}, #{password}, #{profileImageUrl}, #{username}, #{role});
+                                     greenery.member.role,
+                                     greenery.member.refresh_token)
+        VALUES (#{nickname}, #{password}, #{profileImageUrl}, #{username}, #{role}, #{refreshToken});
     </insert>
 
     <select id="findByUsername" resultType="Member">
@@ -27,4 +28,16 @@
         FROM greenery.member
         WHERE username = #{nickname}
     </select>
+
+    <select id="findRefreshTokenByUsername" resultType="String">
+        SELECT refresh_token
+        FROM greenery.member
+        WHERE username = #{username}
+    </select>
+
+    <update id="updateRefreshToken">
+        UPDATE greenery.member
+        SET refresh_token = #{refreshToken}
+        WHERE username = #{username}
+    </update>
 </mapper>
