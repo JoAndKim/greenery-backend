@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 
@@ -57,6 +58,11 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_VALID_TIME)) // set expiry time
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // algorithm for encrypting and secretKey for signature
                 .compact();
+    }
+
+    public String getRefreshTokenExpiryTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return simpleDateFormat.format(new Date(new Date().getTime() + REFRESH_TOKEN_VALID_TIME));
     }
 
     public Authentication getAuthentication(String token) {

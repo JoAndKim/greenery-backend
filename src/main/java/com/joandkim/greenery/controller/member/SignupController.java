@@ -1,7 +1,7 @@
 package com.joandkim.greenery.controller.member;
 
+import com.joandkim.greenery.dto.NewAccessMemberResponse;
 import com.joandkim.greenery.dto.signup.CheckedDuplicatedName;
-import com.joandkim.greenery.dto.signup.SignupResponse;
 import com.joandkim.greenery.service.member.SignupService;
 import com.joandkim.greenery.vo.Member;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,9 +18,9 @@ public class SignupController {
 
     @Operation(summary = "회원가입", description = "성공적으로 회원가입하면 JWT를 발급받는다")
     @PostMapping
-    public ResponseEntity<SignupResponse> signup(@RequestBody Member signupMember) {
-        SignupResponse signupResponse = signupService.signup(signupMember);
-        return ResponseEntity.ok(signupResponse);
+    public ResponseEntity<NewAccessMemberResponse> signup(@RequestBody Member signupMember) {
+        NewAccessMemberResponse newAccessMemberResponse = signupService.signup(signupMember);
+        return ResponseEntity.ok(newAccessMemberResponse);
     }
 
     @GetMapping("validate")

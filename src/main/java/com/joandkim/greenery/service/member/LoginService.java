@@ -1,7 +1,7 @@
 package com.joandkim.greenery.service.member;
 
+import com.joandkim.greenery.dto.NewAccessMemberResponse;
 import com.joandkim.greenery.dto.login.LoginMemberRequest;
-import com.joandkim.greenery.dto.login.LoginMemberResponse;
 import com.joandkim.greenery.util.JwtTokenProvider;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class LoginService {
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberService memberService;
 
-    public LoginMemberResponse login(LoginMemberRequest loginMemberRequest) {
+    public NewAccessMemberResponse login(LoginMemberRequest loginMemberRequest) {
         Member member = memberService.loadUserByUsername(loginMemberRequest.getUsername());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -26,9 +26,10 @@ public class LoginService {
         String refreshToken = jwtTokenProvider.createRefreshToken(loginMemberRequest.getUsername());
         memberService.updateRefreshToken(loginMemberRequest.getUsername(), refreshToken);
 
-        return LoginMemberResponse.builder()
+        return NewAccessMemberResponse.builder()
                 .accessToken(jwtTokenProvider.createToken(member.getUsername()))
                 .refreshToken(refreshToken)
+                .refreshTokenExpiryDate(jwtTokenProvider.getRefreshTokenExpiryTime())
                 .nickname(member.getNickname())
                 .profileImageUrl(member.getProfileImageUrl())
                 .build();
