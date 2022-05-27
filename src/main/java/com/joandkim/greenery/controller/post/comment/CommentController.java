@@ -1,6 +1,6 @@
 package com.joandkim.greenery.controller.post.comment;
 
-import com.joandkim.greenery.dto.SavingCommentRequest;
+import com.joandkim.greenery.dto.comment.SavingCommentRequest;
 import com.joandkim.greenery.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
