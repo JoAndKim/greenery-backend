@@ -1,6 +1,6 @@
 package com.joandkim.greenery.service;
 
-import com.joandkim.greenery.dto.SavingCommentRequest;
+import com.joandkim.greenery.dto.comment.SavingCommentRequest;
 import com.joandkim.greenery.mapper.CommentMapper;
 import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;

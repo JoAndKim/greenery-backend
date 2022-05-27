@@ -1,4 +1,4 @@
-package com.joandkim.greenery.dto;
+package com.joandkim.greenery.dto.comment;
 
 import lombok.Getter;
 

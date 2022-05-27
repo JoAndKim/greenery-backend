@@ -1,6 +1,6 @@
 package com.joandkim.greenery.mapper;
 
-import com.joandkim.greenery.dto.SavingCommentRequest;
+import com.joandkim.greenery.dto.comment.SavingCommentRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
