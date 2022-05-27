@@ -4,6 +4,6 @@
     <insert id="save">
         INSERT INTO greenery.comment
         (content, group_id, level, member_id, post_id)
-VALUES (#{content}, #{groupId}, #{layer}, /* JWT에서 가져온 member_id */, #{postId})
+VALUES (#{request.content}, #{request.groupId}, #{request.layer}, #{memberId}, #{postId})
 </insert>
 </mapper>
