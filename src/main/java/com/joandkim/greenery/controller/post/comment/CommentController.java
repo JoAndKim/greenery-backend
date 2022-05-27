@@ -1,5 +1,6 @@
 package com.joandkim.greenery.controller.post.comment;
 
+import com.joandkim.greenery.dto.comment.CommentsResponse;
 import com.joandkim.greenery.dto.comment.SavingCommentRequest;
 import com.joandkim.greenery.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
 
     private final CommentService commentService;
+
+    @GetMapping("/{postId}/comments")
+    public ResponseEntity<CommentsResponse> getComments(@PathVariable Long postId) {
+        CommentsResponse commentsResponse = commentService.getComments(postId);
+        return ResponseEntity.ok(commentsResponse);
+    }
 
     @PostMapping("/{postId}/comments")
     public ResponseEntity<Void> saveComment(@PathVariable Long postId,

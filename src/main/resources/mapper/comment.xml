@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.joandkim.greenery.mapper.CommentMapper">
+    <resultMap id="comments" type="com.joandkim.greenery.dto.comment.CommentResponse">
+        <collection property="briefMember" column="member_id" javaType="BriefMember"
+                    ofType="com.joandkim.greenery.dto.BriefMember" select="getMemberByMemberId"/>
+    </resultMap>
+
     <insert id="save">
         INSERT INTO greenery.comment
-        (content, group_id, level, member_id, post_id)
-VALUES (#{request.content}, #{request.groupId}, #{request.layer}, #{memberId}, #{postId})
-</insert>
+            (content, group_id, level, member_id, post_id)
+        VALUES (#{request.content}, #{request.groupId}, #{request.layer}, #{memberId}, #{postId})
+    </insert>
+
+    <select id="getComments" resultMap="comments" resultType="com.joandkim.greenery.dto.comment.CommentResponse">
+        SELECT c.id, group_id, post_id, level AS layer, content, reg_date,
+               m.id AS userId
+        FROM comment c
+        JOIN member m on c.member_id = m.id
+        WHERE post_id = #{postId}
+    </select>
+
+    <select id="getMemberByMemberId" resultType="BriefMember">
+        SELECT id, nickname, profile_image_url AS profileImageUrl
+        FROM member
+        WHERE
+    </select>
 </mapper>
