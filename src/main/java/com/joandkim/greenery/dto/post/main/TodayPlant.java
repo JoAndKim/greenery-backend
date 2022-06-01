@@ -1,6 +1,6 @@
 package com.joandkim.greenery.dto.post.main;
 
-import com.joandkim.greenery.dto.post.BriefMember;
+import com.joandkim.greenery.dto.BriefMember;
 import lombok.Getter;
 
 /**

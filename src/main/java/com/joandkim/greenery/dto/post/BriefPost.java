@@ -1,11 +1,14 @@
 package com.joandkim.greenery.dto.post;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.joandkim.greenery.dto.BriefMember;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
 public class BriefPost {

@@ -27,6 +27,6 @@ public class CommentService {
 
     public CommentsResponse getComments(Long postId) {
         List<CommentResponse> unsortedComments = commentMapper.getComments(postId);
-        return null;
+        return new CommentsResponse(unsortedComments);
     }
 }

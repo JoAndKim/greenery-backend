@@ -1,7 +1,7 @@
 package com.joandkim.greenery.dto.post.detail;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.joandkim.greenery.dto.post.BriefMember;
+import com.joandkim.greenery.dto.BriefMember;
 import com.joandkim.greenery.vo.PostContent;
 import lombok.Getter;
 

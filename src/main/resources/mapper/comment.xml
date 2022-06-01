@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.joandkim.greenery.mapper.CommentMapper">
-    <resultMap id="comments" type="com.joandkim.greenery.dto.comment.CommentResponse">
-        <collection property="briefMember" column="member_id" javaType="BriefMember"
-                    ofType="com.joandkim.greenery.dto.BriefMember" select="getMemberByMemberId"/>
+
+    <resultMap id="CommentRM" type="com.joandkim.greenery.dto.comment.CommentResponse">
+        <id property="id" column="id"/>
+        <result property="groupId" column="group_id"/>
+        <result property="postId" column="post_id"/>
+        <result property="layer" column="layer"/>
+        <result property="content" column="content"/>
+        <result property="regDate" column="reg_date"/>
+        <association property="briefMember" javaType="BriefMember">
+            <id property="userId" column="userId"/>
+            <result property="nickname" column="nickname"/>
+            <result property="profileImageUrl" column="profileImageUrl"/>
+        </association>
     </resultMap>
 
     <insert id="save">
@@ -12,17 +22,19 @@
         VALUES (#{request.content}, #{request.groupId}, #{request.layer}, #{memberId}, #{postId})
     </insert>
 
-    <select id="getComments" resultMap="comments" resultType="com.joandkim.greenery.dto.comment.CommentResponse">
-        SELECT c.id, group_id, post_id, level AS layer, content, reg_date,
-               m.id AS userId
+    <select id="getComments" resultMap="CommentRM"
+            resultType="com.joandkim.greenery.dto.comment.CommentResponse">
+        SELECT c.id                AS id,
+               group_id,
+               post_id,
+               level               AS layer,
+               content,
+               reg_date,
+               m.id                AS userId,
+               m.nickname          AS nickname,
+               m.profile_image_url AS profileImageUrl
         FROM comment c
-        JOIN member m on c.member_id = m.id
+                 JOIN member m on c.member_id = m.id
         WHERE post_id = #{postId}
-    </select>
-
-    <select id="getMemberByMemberId" resultType="BriefMember">
-        SELECT id, nickname, profile_image_url AS profileImageUrl
-        FROM member
-        WHERE
     </select>
 </mapper>
