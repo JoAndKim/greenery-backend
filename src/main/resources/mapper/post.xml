@@ -30,7 +30,7 @@
         </if>
     </select>
 
-    <select id="selectBriefMemberByPostId" resultType="com.joandkim.greenery.dto.post.BriefMember">
+    <select id="selectBriefMemberByPostId" resultType="com.joandkim.greenery.dto.BriefMember">
         SELECT m.id AS userId,
                m.nickname,
                m.profile_image_url

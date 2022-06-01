@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 @Getter
 public class Comment {
     private Long id;
-    private Long group_id;
-    private Long post_id;
+    private Long groupId;
+    private Long postId;
     private Integer level;
-    private Long member_id;
+    private Long memberId;
     private String content;
     private LocalDateTime regDate;
 }

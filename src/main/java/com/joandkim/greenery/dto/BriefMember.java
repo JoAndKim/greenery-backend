@@ -1,10 +1,8 @@
-package com.joandkim.greenery.dto.post;
+package com.joandkim.greenery.dto;
 
 import lombok.Getter;
-import lombok.ToString;
 
 @Getter
-@ToString
 public class BriefMember {
     private Long userId;
     private String nickname;

@@ -29,7 +29,8 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         log.info("jwt authentication filter dofilter");
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
         // validate token
-        if (token != null && jwtTokenProvider.validateToken(token)) {
+        boolean isValid = jwtTokenProvider.validateToken(token);
+        if (token != null && isValid) {
             // get user info if token is valid
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
             // SecurityContext 에 Authentication 객체를 저장합니다.
