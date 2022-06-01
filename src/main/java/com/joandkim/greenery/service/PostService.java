@@ -6,6 +6,8 @@ import com.joandkim.greenery.dto.post.Posts;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
 import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.mapper.PostMapper;
+import com.joandkim.greenery.util.AuthenticationManager;
+import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,5 +43,10 @@ public class PostService {
     public void create(NewPost newPost) {
         postMapper.save(newPost);
         postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
+    }
+
+    public void savelike(Long postId) {
+        Member member = AuthenticationManager.member();
+
     }
 }
