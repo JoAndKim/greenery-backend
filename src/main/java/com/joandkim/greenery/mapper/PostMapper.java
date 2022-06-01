@@ -4,6 +4,7 @@ import com.joandkim.greenery.dto.post.BriefPost;
 import com.joandkim.greenery.dto.post.NewPost;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
 import com.joandkim.greenery.dto.post.main.MainPosts;
+import com.joandkim.greenery.vo.Member;
 import com.joandkim.greenery.vo.Post;
 import com.joandkim.greenery.vo.PostContent;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,4 +27,7 @@ public interface PostMapper{
 
     void savePostContents(@Param("postContents") List<PostContent> postContents,
                           @Param("postId") Long postId);
+
+    void saveLike(@Param("postId") Long postId,
+                  @Param("memberId") Long memberId);
 }

@@ -45,8 +45,7 @@ public class PostService {
         postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
     }
 
-    public void savelike(Long postId) {
-        Member member = AuthenticationManager.member();
-
+    public void saveLike(Long postId) {
+        postMapper.saveLike(postId, AuthenticationManager.member().getId());
     }
 }

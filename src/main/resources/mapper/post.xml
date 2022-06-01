@@ -71,4 +71,9 @@
             (#{postContents.content}, #{postContents.postImageUrl}, #{postId})
         </foreach>
     </insert>
+
+    <insert id="saveLike">
+        INSERT INTO greenery.like_number (greenery.like_number.member_id, greenery.like_number.post_id)
+        VALUES (#{memberId}, #{postId})
+    </insert>
 </mapper>
