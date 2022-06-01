@@ -1,5 +1,6 @@
 package com.joandkim.greenery.dto.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.joandkim.greenery.dto.BriefMember;
 import lombok.Getter;
@@ -19,5 +20,7 @@ public class CommentResponse {
     private BriefMember briefMember;
 
     private String content;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;
 }
