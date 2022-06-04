@@ -71,4 +71,24 @@
             (#{postContents.content}, #{postContents.postImageUrl}, #{postId})
         </foreach>
     </insert>
+
+    <select id="findLikeByPostIdAndMemberId" resultType="Boolean">
+        SELECT EXISTS
+                   (SELECT *
+                    FROM greenery.like_number
+                    WHERE post_id = #{postId}
+                      AND member_id = #{memberId})
+    </select>
+
+    <insert id="saveLike">
+        INSERT INTO greenery.like_number (greenery.like_number.member_id, greenery.like_number.post_id)
+        VALUES (#{memberId}, #{postId})
+    </insert>
+
+    <delete id="deleteLike">
+        DELETE
+        FROM greenery.like_number
+        WHERE post_id = #{postId}
+          AND member_id = #{memberId}
+    </delete>
 </mapper>

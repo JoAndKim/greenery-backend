@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/posts", "/api/posts/{postId}/comments").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/api/posts", "/api/posts/{postId}/comments", "/api/posts/{postId}/likes").hasRole("USER")
                 .antMatchers("/api/**").permitAll()
                 .antMatchers(SWAGGER_URL_ARRAY).permitAll()
                 .anyRequest().authenticated()

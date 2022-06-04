@@ -43,4 +43,10 @@ public class PostController {
         postService.create(newPost);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @PostMapping("/{postId}/likes")
+    public ResponseEntity like(@PathVariable Long postId) {
+        postService.processLike(postId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }
