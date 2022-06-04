@@ -91,4 +91,19 @@
         WHERE post_id = #{postId}
           AND member_id = #{memberId}
     </delete>
+
+    <select id="findMemberIdByPostId" resultType="Long">
+        SELECT member_id
+        FROM greenery.post
+        WHERE id = #{postId}
+    </select>
+
+    <update id="editPost">
+        UPDATE greenery.post
+        SET title = #{title}
+        WHERE id = #{postId}
+    </update>
+
+    <update id="editPostContents">
+    </update>
 </mapper>

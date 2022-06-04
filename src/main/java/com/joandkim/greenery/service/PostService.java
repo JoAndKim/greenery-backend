@@ -1,6 +1,7 @@
 package com.joandkim.greenery.service;
 
 import com.joandkim.greenery.dto.post.BriefPost;
+import com.joandkim.greenery.dto.post.EditingPost;
 import com.joandkim.greenery.dto.post.NewPost;
 import com.joandkim.greenery.dto.post.Posts;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
@@ -11,9 +12,11 @@ import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -54,6 +57,17 @@ public class PostService {
             postMapper.deleteLike(postId, memberId);
         } else {
             postMapper.saveLike(postId, memberId);
+        }
+    }
+
+    public void edit(Long postId, EditingPost editingPost) {
+        Long postMemberId = postMapper.findMemberIdByPostId(postId);
+        boolean self = postMemberId.equals(AuthenticationManager.member().getId());
+        if (self) {
+            postMapper.editPost(postId, editingPost.getTitle());
+            postMapper.editPostContents(postId, editingPost.getPostContents());
+        } else {
+            throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
         }
     }
 }
