@@ -58,8 +58,8 @@
 
     <insert id="save" parameterType="com.joandkim.greenery.dto.post.NewPost">
         INSERT INTO greenery.post (title, member_id)
-        VALUES (#{title}, #{memberId})
-        <selectKey keyProperty="id" resultType="Long">
+        VALUES (#{newPost.title}, #{memberId})
+        <selectKey keyProperty="newPost.id" resultType="Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
@@ -91,4 +91,24 @@
         WHERE post_id = #{postId}
           AND member_id = #{memberId}
     </delete>
+
+    <select id="findMemberIdByPostId" resultType="Long">
+        SELECT member_id
+        FROM greenery.post
+        WHERE id = #{postId}
+    </select>
+
+    <update id="editPost">
+        UPDATE greenery.post
+        SET title = #{title}
+        WHERE id = #{postId}
+    </update>
+
+    <update id="editPostContents">
+        UPDATE greenery.post_content
+        SET content        = #{postContent.content},
+            post_image_url = #{postContent.postImageUrl}
+        WHERE post_id = #{postId}
+          AND id = #{postContent.id}
+    </update>
 </mapper>

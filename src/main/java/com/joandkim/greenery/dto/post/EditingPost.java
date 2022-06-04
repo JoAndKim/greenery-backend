@@ -6,8 +6,7 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class NewPost {
-    private Long id;
+public class EditingPost {
     private String title;
     private List<PostContent> postContents;
 }

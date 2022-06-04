@@ -1,6 +1,7 @@
 package com.joandkim.greenery.service;
 
 import com.joandkim.greenery.dto.post.BriefPost;
+import com.joandkim.greenery.dto.post.EditingPost;
 import com.joandkim.greenery.dto.post.NewPost;
 import com.joandkim.greenery.dto.post.Posts;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
@@ -8,12 +9,15 @@ import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.mapper.PostMapper;
 import com.joandkim.greenery.util.AuthenticationManager;
 import com.joandkim.greenery.vo.Member;
+import com.joandkim.greenery.vo.PostContent;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -42,7 +46,7 @@ public class PostService {
     // TODO: need to bring memberId
     @Transactional
     public void create(NewPost newPost) {
-        postMapper.save(newPost);
+        postMapper.save(newPost, AuthenticationManager.member().getId());
         postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
     }
 
@@ -54,6 +58,19 @@ public class PostService {
             postMapper.deleteLike(postId, memberId);
         } else {
             postMapper.saveLike(postId, memberId);
+        }
+    }
+
+    public void edit(Long postId, EditingPost editingPost) {
+        Long postMemberId = postMapper.findMemberIdByPostId(postId);
+        boolean self = postMemberId.equals(AuthenticationManager.member().getId());
+        if (self) {
+            postMapper.editPost(postId, editingPost.getTitle());
+            for (PostContent pc : editingPost.getPostContents()) {
+                postMapper.editPostContents(postId, pc);
+            }
+        } else {
+            throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
         }
     }
 }

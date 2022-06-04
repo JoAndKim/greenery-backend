@@ -1,5 +1,6 @@
 package com.joandkim.greenery.controller.post;
 
+import com.joandkim.greenery.dto.post.EditingPost;
 import com.joandkim.greenery.dto.post.NewPost;
 import com.joandkim.greenery.dto.post.Posts;
 import com.joandkim.greenery.dto.post.detail.PostDetail;
@@ -48,5 +49,12 @@ public class PostController {
     public ResponseEntity like(@PathVariable Long postId) {
         postService.processLike(postId);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{postId}")
+    public ResponseEntity edit(@PathVariable Long postId,
+                               @RequestBody EditingPost editingPost) {
+        postService.edit(postId, editingPost);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
