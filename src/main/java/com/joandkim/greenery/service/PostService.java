@@ -9,6 +9,7 @@ import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.mapper.PostMapper;
 import com.joandkim.greenery.util.AuthenticationManager;
 import com.joandkim.greenery.vo.Member;
+import com.joandkim.greenery.vo.PostContent;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +66,9 @@ public class PostService {
         boolean self = postMemberId.equals(AuthenticationManager.member().getId());
         if (self) {
             postMapper.editPost(postId, editingPost.getTitle());
-            postMapper.editPostContents(postId, editingPost.getPostContents());
+            for (PostContent pc : editingPost.getPostContents()) {
+                postMapper.editPostContents(postId, pc);
+            }
         } else {
             throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
         }

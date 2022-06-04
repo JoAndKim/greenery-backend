@@ -46,5 +46,5 @@ public interface PostMapper {
                   @Param("title") String title);
 
     void editPostContents(@Param("postId") Long postId,
-                          @Param("postContents") List<PostContent> postContents);
+                          @Param("postContent") PostContent postContent);
 }

@@ -105,5 +105,10 @@
     </update>
 
     <update id="editPostContents">
+        UPDATE greenery.post_content
+        SET content        = #{postContent.content},
+            post_image_url = #{postContent.postImageUrl}
+        WHERE post_id = #{postId}
+          AND id = #{postContent.id}
     </update>
 </mapper>
