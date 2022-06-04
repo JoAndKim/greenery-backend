@@ -46,7 +46,7 @@ public class PostController {
 
     @PostMapping("/{postId}/likes")
     public ResponseEntity like(@PathVariable Long postId) {
-        postService.saveLike(postId);
+        postService.processLike(postId);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

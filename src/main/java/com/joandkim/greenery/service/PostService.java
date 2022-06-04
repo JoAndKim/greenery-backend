@@ -11,6 +11,7 @@ import com.joandkim.greenery.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,7 +46,14 @@ public class PostService {
         postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
     }
 
-    public void saveLike(Long postId) {
-        postMapper.saveLike(postId, AuthenticationManager.member().getId());
+    @Transactional
+    public void processLike(Long postId) {
+        Long memberId = AuthenticationManager.member().getId();
+        Boolean liked = postMapper.findLikeByPostIdAndMemberId(postId, memberId);
+        if (liked) {
+            postMapper.deleteLike(postId, memberId);
+        } else {
+            postMapper.saveLike(postId, memberId);
+        }
     }
 }

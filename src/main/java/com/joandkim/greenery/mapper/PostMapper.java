@@ -28,6 +28,12 @@ public interface PostMapper{
     void savePostContents(@Param("postContents") List<PostContent> postContents,
                           @Param("postId") Long postId);
 
+    Boolean findLikeByPostIdAndMemberId(@Param("postId") Long postId,
+                                        @Param("memberId") Long memberId);
     void saveLike(@Param("postId") Long postId,
                   @Param("memberId") Long memberId);
+
+
+    void deleteLike(@Param("postId") Long postId,
+                    @Param("memberId") Long memberId);
 }
