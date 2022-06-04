@@ -58,8 +58,8 @@
 
     <insert id="save" parameterType="com.joandkim.greenery.dto.post.NewPost">
         INSERT INTO greenery.post (title, member_id)
-        VALUES (#{title}, #{memberId})
-        <selectKey keyProperty="id" resultType="Long">
+        VALUES (#{newPost.title}, #{memberId})
+        <selectKey keyProperty="newPost.id" resultType="Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>

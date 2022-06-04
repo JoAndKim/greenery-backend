@@ -24,7 +24,8 @@ public interface PostMapper {
 
     PostDetail getPostDetail(Long postId);
 
-    void save(NewPost newPost);
+    void save(@Param("newPost") NewPost newPost,
+              @Param("memberId") Long memberId);
 
     void savePostContents(@Param("postContents") List<PostContent> postContents,
                           @Param("postId") Long postId);

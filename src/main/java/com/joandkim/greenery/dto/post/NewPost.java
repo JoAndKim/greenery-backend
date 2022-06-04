@@ -10,5 +10,4 @@ public class NewPost {
     private Long id;
     private String title;
     private List<PostContent> postContents;
-    private Long memberId;
 }
