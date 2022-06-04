@@ -47,4 +47,8 @@ public interface PostMapper {
 
     void editPostContents(@Param("postId") Long postId,
                           @Param("postContent") PostContent postContent);
+
+    void deletePost(Long postId);
+
+    void deletePostContents(Long postId);
 }

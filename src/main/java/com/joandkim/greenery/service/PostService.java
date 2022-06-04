@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
@@ -62,9 +63,7 @@ public class PostService {
     }
 
     public void edit(Long postId, EditingPost editingPost) {
-        Long postMemberId = postMapper.findMemberIdByPostId(postId);
-        boolean self = postMemberId.equals(AuthenticationManager.member().getId());
-        if (self) {
+        if (isAuthor(postId)) {
             postMapper.editPost(postId, editingPost.getTitle());
             for (PostContent pc : editingPost.getPostContents()) {
                 postMapper.editPostContents(postId, pc);
@@ -73,4 +72,20 @@ public class PostService {
             throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
         }
     }
+
+    public void delete(Long postId) {
+        if (isAuthor(postId)) {
+            postMapper.deletePost(postId);
+            postMapper.deletePostContents(postId);
+        } else {
+            throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    private boolean isAuthor(Long postId) {
+        Long postMemberId = postMapper.findMemberIdByPostId(postId);
+        return postMemberId.equals(AuthenticationManager.member().getId());
+    }
+
+
 }

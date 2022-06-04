@@ -111,4 +111,16 @@
         WHERE post_id = #{postId}
           AND id = #{postContent.id}
     </update>
+
+    <delete id="deletePost">
+        DELETE
+        FROM post
+        WHERE id = #{postId}
+    </delete>
+
+    <delete id="deletePostContents">
+        DELETE
+        FROM greenery.post_content
+        WHERE post_id = #{postId}
+    </delete>
 </mapper>
