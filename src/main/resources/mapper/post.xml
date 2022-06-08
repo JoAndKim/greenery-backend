@@ -123,4 +123,25 @@
         FROM greenery.post_content
         WHERE post_id = #{postId}
     </delete>
+
+    <select id="getPostIdsByUserId" resultType="Long">
+        SELECT post_id
+        FROM like_number
+        WHERE member_id = #{userId}
+    </select>
+
+    <select id="getMyLikesPosts" resultMap="BriefPostResultMap">
+        SELECT p.id,
+        p.title,
+        p.hits,
+        p.like_numbers AS likes,
+        (SELECT post_image_url FROM post_content WHERE post_id = p.id LIMIT 1) AS mainImageUrl
+        FROM post p
+        <if test="postIds.size() > 0">
+            WHERE IN
+            <foreach collection="postIds" item="postIds" open="(" separator="," close=")">
+                #{postIds}
+            </foreach>
+        </if>
+    </select>
 </mapper>
