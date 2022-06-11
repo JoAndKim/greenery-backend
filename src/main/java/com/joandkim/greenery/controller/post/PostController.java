@@ -69,4 +69,10 @@ public class PostController {
         Posts posts = postService.getMyLikesPosts(userId);
         return ResponseEntity.ok(posts);
     }
+
+    @GetMapping("/{userId}/me")
+    public ResponseEntity<Posts> getMyPosts(@PathVariable Long userId) {
+        Posts posts = postService.getMyPosts(userId);
+        return ResponseEntity.ok(posts);
+    }
 }
