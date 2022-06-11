@@ -8,17 +8,14 @@ import com.joandkim.greenery.dto.post.detail.PostDetail;
 import com.joandkim.greenery.dto.post.main.MainPosts;
 import com.joandkim.greenery.mapper.PostMapper;
 import com.joandkim.greenery.util.AuthenticationManager;
-import com.joandkim.greenery.vo.Member;
 import com.joandkim.greenery.vo.PostContent;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.parameters.P;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -29,10 +26,15 @@ public class PostService {
     private final PostMapper postMapper;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Posts getPosts() {
-        List<BriefPost> post = postMapper.getBriefPost();
-        logger.info("post: {}", post);
-        return new Posts(post);
+    public Posts getPosts(String search) {
+        List<BriefPost> posts;
+        if (search != null) {
+            posts = postMapper.getBriefPostForSearch(search);
+        } else {
+            posts = postMapper.getBriefPost();
+        }
+        logger.info("posts: {}", posts);
+        return new Posts(posts);
     }
 
     public MainPosts getMainPosts() {
@@ -69,7 +71,7 @@ public class PostService {
                 postMapper.editPostContents(postId, pc);
             }
         } else {
-            throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+            throw new AccessDeniedException(HttpStatus.FORBIDDEN.toString());
         }
     }
 
@@ -78,14 +80,28 @@ public class PostService {
             postMapper.deletePost(postId);
             postMapper.deletePostContents(postId);
         } else {
-            throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+            throw new AccessDeniedException(HttpStatus.FORBIDDEN.toString());
         }
+    }
+
+
+    @Transactional
+    public Posts getMyLikesPosts(Long userId) {
+        if (isSameUser(userId)) {
+            List<Long> postIds = postMapper.getPostIdsByUserId(userId);
+            List<BriefPost> posts = postMapper.getMyLikesPosts(postIds);
+            return new Posts(posts);
+        } else {
+            throw new AccessDeniedException(HttpStatus.FORBIDDEN.toString());
+        }
+    }
+
+    private boolean isSameUser(Long userId) {
+        return userId.equals(AuthenticationManager.member().getId());
     }
 
     private boolean isAuthor(Long postId) {
         Long postMemberId = postMapper.findMemberIdByPostId(postId);
         return postMemberId.equals(AuthenticationManager.member().getId());
     }
-
-
 }

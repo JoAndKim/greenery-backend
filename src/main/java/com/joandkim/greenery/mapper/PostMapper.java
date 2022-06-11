@@ -22,6 +22,8 @@ public interface PostMapper {
 
     List<BriefPost> getBriefPost(Boolean forMain);
 
+    List<BriefPost> getBriefPostForSearch(String search);
+
     PostDetail getPostDetail(Long postId);
 
     void save(@Param("newPost") NewPost newPost,
@@ -51,4 +53,8 @@ public interface PostMapper {
     void deletePost(Long postId);
 
     void deletePostContents(Long postId);
+
+    List<Long> getPostIdsByUserId(Long userId);
+
+    List<BriefPost> getMyLikesPosts(List<Long> postIds);
 }
