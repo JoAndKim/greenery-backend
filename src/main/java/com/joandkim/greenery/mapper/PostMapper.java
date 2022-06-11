@@ -22,6 +22,8 @@ public interface PostMapper {
 
     List<BriefPost> getBriefPost(Boolean forMain);
 
+    List<BriefPost> getBriefPostForSearch(String search);
+
     PostDetail getPostDetail(Long postId);
 
     void save(@Param("newPost") NewPost newPost,

@@ -22,8 +22,8 @@ public class PostController {
 
     @Operation(summary = "글 목록", description = "글 목록을 호출한다")
     @GetMapping
-    public ResponseEntity posts() {
-        Posts posts = postService.getPosts();
+    public ResponseEntity posts(@RequestParam(required = false) String search) {
+        Posts posts = postService.getPosts(search);
         return ResponseEntity.ok(posts);
     }
 

@@ -30,6 +30,17 @@
         </if>
     </select>
 
+    <select id="getBriefPostForSearch" resultType="com.joandkim.greenery.dto.post.BriefPost"
+            resultMap="BriefPostResultMap">
+        SELECT p.id,
+               p.title,
+               p.hits,
+               p.like_numbers                                                         AS likes,
+               (SELECT post_image_url FROM post_content WHERE post_id = p.id LIMIT 1) AS mainImageUrl
+        FROM post p
+        WHERE p.title LIKE CONCAT('%', #{search}, '%')
+    </select>
+
     <select id="selectBriefMemberByPostId" resultType="com.joandkim.greenery.dto.BriefMember">
         SELECT m.id AS userId,
                m.nickname,

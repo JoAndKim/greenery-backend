@@ -29,10 +29,15 @@ public class PostService {
     private final PostMapper postMapper;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Posts getPosts() {
-        List<BriefPost> post = postMapper.getBriefPost();
-        logger.info("post: {}", post);
-        return new Posts(post);
+    public Posts getPosts(String search) {
+        List<BriefPost> posts;
+        if (search != null) {
+            posts = postMapper.getBriefPostForSearch(search);
+        } else {
+            posts = postMapper.getBriefPost();
+        }
+        logger.info("posts: {}", posts);
+        return new Posts(posts);
     }
 
     public MainPosts getMainPosts() {
