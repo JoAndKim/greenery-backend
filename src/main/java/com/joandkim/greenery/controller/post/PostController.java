@@ -63,4 +63,10 @@ public class PostController {
         postService.delete(postId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/{userId}/likes")
+    public ResponseEntity<Posts> getMyLikesPosts(@PathVariable Long userId) {
+        Posts posts = postService.getMyLikesPosts(userId);
+        return ResponseEntity.ok(posts);
+    }
 }

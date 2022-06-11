@@ -87,10 +87,24 @@ public class PostService {
         }
     }
 
+
+    @Transactional
+    public Posts getMyLikesPosts(Long userId) {
+        if (isSameUser(userId)) {
+            List<Long> postIds = postMapper.getPostIdsByUserId(userId);
+            List<BriefPost> posts = postMapper.getMyLikesPosts(postIds);
+            return new Posts(posts);
+        } else {
+            throw new HttpClientErrorException(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    private boolean isSameUser(Long userId) {
+        return userId.equals(AuthenticationManager.member().getId());
+    }
+
     private boolean isAuthor(Long postId) {
         Long postMemberId = postMapper.findMemberIdByPostId(postId);
         return postMemberId.equals(AuthenticationManager.member().getId());
     }
-
-
 }

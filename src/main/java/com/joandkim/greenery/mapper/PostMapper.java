@@ -53,4 +53,8 @@ public interface PostMapper {
     void deletePost(Long postId);
 
     void deletePostContents(Long postId);
+
+    List<Long> getPostIdsByUserId(Long userId);
+
+    List<BriefPost> getMyLikesPosts(List<Long> postIds);
 }
