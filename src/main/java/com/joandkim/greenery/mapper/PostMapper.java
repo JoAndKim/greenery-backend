@@ -57,4 +57,6 @@ public interface PostMapper {
     List<Long> getPostIdsByUserId(Long userId);
 
     List<BriefPost> getMyLikesPosts(List<Long> postIds);
+
+    List<BriefPost> getMyPosts(Long userId);
 }
