@@ -149,7 +149,7 @@
         (SELECT post_image_url FROM post_content WHERE post_id = p.id LIMIT 1) AS mainImageUrl
         FROM post p
         <if test="postIds.size() > 0">
-            WHERE IN
+            WHERE p.id IN
             <foreach collection="postIds" item="postIds" open="(" separator="," close=")">
                 #{postIds}
             </foreach>
