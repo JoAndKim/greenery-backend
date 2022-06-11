@@ -70,7 +70,7 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
-    @GetMapping("/{userId}/my")
+    @GetMapping("/{userId}/me")
     public ResponseEntity<Posts> getMyPosts(@PathVariable Long userId) {
         Posts posts = postService.getMyPosts(userId);
         return ResponseEntity.ok(posts);
