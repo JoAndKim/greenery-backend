@@ -41,8 +41,8 @@ public class PostController {
     @PostMapping
     public ResponseEntity create(@RequestBody NewPost newPost) {
         System.out.println(newPost);
-        postService.create(newPost);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Long postId = postService.create(newPost);
+        return ResponseEntity.ok(postId);
     }
 
     @PostMapping("/{postId}/likes")

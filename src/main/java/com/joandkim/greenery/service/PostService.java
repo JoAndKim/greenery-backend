@@ -48,9 +48,10 @@ public class PostService {
 
     // TODO: need to bring memberId
     @Transactional
-    public void create(NewPost newPost) {
+    public Long create(NewPost newPost) {
         postMapper.save(newPost, AuthenticationManager.member().getId());
         postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
+        return newPost.getId();
     }
 
     @Transactional
