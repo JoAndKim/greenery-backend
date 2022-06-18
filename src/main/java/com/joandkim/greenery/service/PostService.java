@@ -97,13 +97,10 @@ public class PostService {
         }
     }
 
-    public Posts getMyPosts(Long userId) {
-        if (isSameUser(userId)) {
-            List<BriefPost> posts = postMapper.getMyPosts(userId);
-            return new Posts(posts);
-        } else {
-            throw new AccessDeniedException(HttpStatus.FORBIDDEN.toString());
-        }
+    public Posts getMyPosts() {
+        Long userId = AuthenticationManager.member().getId();
+        List<BriefPost> posts = postMapper.getMyPosts(userId);
+        return new Posts(posts);
     }
 
     private boolean isSameUser(Long userId) {
