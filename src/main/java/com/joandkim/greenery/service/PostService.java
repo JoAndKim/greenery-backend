@@ -87,14 +87,11 @@ public class PostService {
 
 
     @Transactional
-    public Posts getMyLikesPosts(Long userId) {
-        if (isSameUser(userId)) {
-            List<Long> postIds = postMapper.getPostIdsByUserId(userId);
-            List<BriefPost> posts = postMapper.getMyLikesPosts(postIds);
-            return new Posts(posts);
-        } else {
-            throw new AccessDeniedException(HttpStatus.FORBIDDEN.toString());
-        }
+    public Posts getMyLikesPosts() {
+        Long userId = AuthenticationManager.member().getId();
+        List<Long> postIds = postMapper.getPostIdsByUserId(userId);
+        List<BriefPost> posts = postMapper.getMyLikesPosts(postIds);
+        return new Posts(posts);
     }
 
     public Posts getMyPosts() {
