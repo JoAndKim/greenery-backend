@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +44,12 @@ public class PostService {
     }
 
     public PostDetail getPostDetail(Long postId) {
-        return postMapper.getPostDetail(postId);
+        Long memberId = AuthenticationManager.member().getId();
+        if (memberId != null) {
+            return postMapper.getPostDetailWithMemberId(postId, memberId);
+        } else {
+            return postMapper.getPostDetail(postId);
+        }
     }
 
     // TODO: need to bring memberId

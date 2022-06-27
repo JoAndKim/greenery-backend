@@ -61,6 +61,18 @@
         WHERE p.id = #{postId}
     </select>
 
+    <select id="getPostDetailWithMemberId" resultType="com.joandkim.greenery.dto.post.detail.PostDetail"
+            resultMap="PostDetailResultMap">
+        SELECT p.id,
+               p.title,
+               p.hits,
+               p.like_numbers AS likes,
+               p.reg_date,
+               (SELECT EXISTS(SELECT * FROM like_number ln WHERE p.id = #{postId} AND ln.member_id = #{memberId})) AS likeStatus
+        FROM post p
+        WHERE p.id = #{postId}
+    </select>
+
     <select id="selectPostContentListByPostId" resultType="com.joandkim.greenery.vo.PostContent">
         SELECT id, post_image_url, content
         FROM post_content
@@ -158,10 +170,10 @@
 
     <select id="getMyPosts" resultMap="BriefPostResultMap">
         SELECT p.id,
-        p.title,
-        p.hits,
-        p.like_numbers AS likes,
-        (SELECT post_image_url FROM post_content WHERE post_id = p.id LIMIT 1) AS mainImageUrl
+               p.title,
+               p.hits,
+               p.like_numbers                                                         AS likes,
+               (SELECT post_image_url FROM post_content WHERE post_id = p.id LIMIT 1) AS mainImageUrl
         FROM post p
         WHERE member_id = #{userId}
     </select>
