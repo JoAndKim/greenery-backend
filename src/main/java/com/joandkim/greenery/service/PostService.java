@@ -44,7 +44,7 @@ public class PostService {
     }
 
     public PostDetail getPostDetail(Long postId) {
-        Long memberId = AuthenticationManager.member().getId();
+        Long memberId = AuthenticationManager.memberId();
         if (memberId != null) {
             return postMapper.getPostDetailWithMemberId(postId, memberId);
         } else {
@@ -55,14 +55,14 @@ public class PostService {
     // TODO: need to bring memberId
     @Transactional
     public Long create(NewPost newPost) {
-        postMapper.save(newPost, AuthenticationManager.member().getId());
+        postMapper.save(newPost, AuthenticationManager.memberId());
         postMapper.savePostContents(newPost.getPostContents(), newPost.getId());
         return newPost.getId();
     }
 
     @Transactional
     public void processLike(Long postId) {
-        Long memberId = AuthenticationManager.member().getId();
+        Long memberId = AuthenticationManager.memberId();
         Boolean liked = postMapper.findLikeByPostIdAndMemberId(postId, memberId);
         if (liked) {
             postMapper.deleteLike(postId, memberId);
@@ -94,25 +94,25 @@ public class PostService {
 
     @Transactional
     public Posts getMyLikesPosts() {
-        Long userId = AuthenticationManager.member().getId();
+        Long userId = AuthenticationManager.memberId();
         List<Long> postIds = postMapper.getPostIdsByUserId(userId);
         List<BriefPost> posts = postMapper.getMyLikesPosts(postIds);
         return new Posts(posts);
     }
 
     public Posts getMyPosts() {
-        Long userId = AuthenticationManager.member().getId();
+        Long userId = AuthenticationManager.memberId();
         List<BriefPost> posts = postMapper.getMyPosts(userId);
         return new Posts(posts);
     }
 
     private boolean isSameUser(Long userId) {
-        return userId.equals(AuthenticationManager.member().getId());
+        return userId.equals(AuthenticationManager.memberId());
     }
 
     private boolean isAuthor(Long postId) {
         Long postMemberId = postMapper.findMemberIdByPostId(postId);
-        return postMemberId.equals(AuthenticationManager.member().getId());
+        return postMemberId.equals(AuthenticationManager.memberId());
     }
 
 

@@ -20,8 +20,7 @@ public class CommentService {
     private final CommentMapper commentMapper;
 
     public void saveComment(Long postId, SavingCommentRequest request) {
-        Member member = AuthenticationManager.member();
-        commentMapper.save(postId, request, member.getId());
+        commentMapper.save(postId, request, AuthenticationManager.memberId());
     }
 
     public CommentsResponse getComments(Long postId) {

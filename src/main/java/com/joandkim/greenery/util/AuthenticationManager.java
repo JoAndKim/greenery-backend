@@ -8,12 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @Slf4j
 public class AuthenticationManager {
 
-    public static Member member() {
+    public static Long memberId() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("Principal: {}", principal);
         if (principal instanceof Member) {
-            return (Member) principal;
+            return ((Member) principal).getId();
         } else {
+            // TODO: need a fix
             return null;
         }
     }
