@@ -1,6 +1,6 @@
 package com.joandkim.greenery.service;
 
-import com.joandkim.greenery.dto.Plant;
+import com.joandkim.greenery.dto.plant.Plant;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

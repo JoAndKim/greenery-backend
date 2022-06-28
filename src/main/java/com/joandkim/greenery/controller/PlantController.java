@@ -1,6 +1,6 @@
 package com.joandkim.greenery.controller;
 
-import com.joandkim.greenery.dto.Plant;
+import com.joandkim.greenery.dto.plant.Plant;
 import com.joandkim.greenery.service.PlantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
