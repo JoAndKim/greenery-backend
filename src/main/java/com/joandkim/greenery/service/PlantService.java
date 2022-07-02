@@ -1,13 +1,13 @@
 package com.joandkim.greenery.service;
 
-import com.joandkim.greenery.dto.plant.Plant;
+import com.joandkim.greenery.dto.plant.PlantCard;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class PlantService {
-    public List<Plant> getPlants() {
+    public List<PlantCard> getPlants() {
 
         return null;
     }

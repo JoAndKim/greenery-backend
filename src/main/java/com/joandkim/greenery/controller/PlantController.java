@@ -1,6 +1,6 @@
 package com.joandkim.greenery.controller;
 
-import com.joandkim.greenery.dto.plant.Plant;
+import com.joandkim.greenery.dto.plant.PlantCard;
 import com.joandkim.greenery.service.PlantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class PlantController {
     private final PlantService plantService;
 
     public ResponseEntity plants() {
-        List<Plant> plants = plantService.getPlants();
-        return ResponseEntity.ok(plants);
+        List<PlantCard> plantCards = plantService.getPlants();
+        return ResponseEntity.ok(plantCards);
     }
 }
