@@ -1,4 +1,4 @@
-package com.joandkim.greenery.dto.plant;
+package com.joandkim.greenery.vo;
 
 import lombok.Getter;
 import lombok.Setter;
