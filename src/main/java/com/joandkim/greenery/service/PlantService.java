@@ -15,7 +15,7 @@ public class PlantService {
 
     private final PlantMapper plantMapper;
 
-    public List<Plant> getPlants() {
-        return plantMapper.getPlants();
+    public List<Plant> getPlants(Integer group, Integer competence, Integer brightness) {
+        return plantMapper.getPlants(group, competence, brightness);
     }
 }

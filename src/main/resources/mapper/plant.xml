@@ -4,5 +4,17 @@
     <select id="getPlants" resultType="com.joandkim.greenery.vo.Plant">
         SELECT *
         FROM greenery.plant
+        WHERE 1=1
+        <choose>
+            <when test="group != null and group != ''">
+                AND group = #{group}
+            </when>
+            <when test="competence != null and competence != ''">
+                AND competence = #{competence}
+            </when>
+            <when test="brightness != null and brightness != ''">
+                AND brightness = #{brightness}
+            </when>
+        </choose>
     </select>
 </mapper>
