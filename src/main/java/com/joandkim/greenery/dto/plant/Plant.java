@@ -6,21 +6,21 @@ import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @Setter
 @ToString
 public class Plant {
-    private String cntntsNo;
-    private String cntntsSj;
-    private String rtnFileCours;
-    private String rtnFileSeCode;
-    private String rtnFileSn;
-    private String rtnImageDc;
-    private String rtnImgSeCode;
-    private String rtnOrginlFileNm;
-    private String rtnStreFileNm;
-    private String rtnThumbFileNm;
+    private Integer id;
+    private String name;
+    private String imageUrl;
+    private Integer group;
+    private Integer brightness;
+    private Integer competence;
+    private String content;
+    private String technicalName;
+    private String watering;
+    private String humidity;
+    private String illuminance;
 }
