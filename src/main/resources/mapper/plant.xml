@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joandkim.greenery.mapper.PlantMapper">
+    <select id="getPlants" resultType="com.joandkim.greenery.vo.Plant" parameterType="com.joandkim.greenery.dto.PlantSearchFilter">
+        SELECT *
+        FROM greenery.plant
+        WHERE 1=1
+        <if test="group != null and group != ''">
+            AND `group` = #{group}
+        </if>
+        <if test="competence != null and competence != ''">
+            AND `competence` = #{competence}
+        </if>
+        <if test="brightness != null and brightness != ''">
+            AND `brightness` = #{brightness}
+        </if>
+    </select>
+</mapper>
